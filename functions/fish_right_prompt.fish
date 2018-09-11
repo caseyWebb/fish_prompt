@@ -1,9 +1,9 @@
 function fish_right_prompt
     set -l status_copy $status
-    set -l status_color 0fc
+    set -l status_color cyan
 
     if test "$status_copy" -ne 0
-        set status_color f30
+        set status_color red
     end
 
     if test "$CMD_DURATION" -gt 100

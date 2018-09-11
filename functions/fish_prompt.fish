@@ -22,7 +22,7 @@ function fish_prompt -d "Simple Fish Prompt"
     # User
     #
     set -l user (id -un $USER)
-    __print_color FF7676 "$user"
+    __print_color red "$user"
 
 
     # Host
@@ -30,8 +30,8 @@ function fish_prompt -d "Simple Fish Prompt"
     set -l host_name (hostname -s)
     set -l host_glyph " at "
 
-    __print_color ffffff "$host_glyph"
-    __print_color F6F49D "$host_name"
+    __print_color white "$host_glyph"
+    __print_color yellow "$host_name"
 
 
     # Current working directory
@@ -39,8 +39,8 @@ function fish_prompt -d "Simple Fish Prompt"
     set -l pwd_glyph " in "
     set -l pwd_string (echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|')
 
-    __print_color ffffff "$pwd_glyph"
-    __print_color 5DAE8B "$pwd_string"
+    __print_color white "$pwd_glyph"
+    __print_color green "$pwd_string"
 
 
     # Git
@@ -50,8 +50,8 @@ function fish_prompt -d "Simple Fish Prompt"
         set -l git_glyph " on "
         set -l git_branch_glyph
 
-        __print_color ffffff "$git_glyph"
-        __print_color 6597ca "$branch_name"
+        __print_color white "$git_glyph"
+        __print_color blue "$branch_name"
 
         if git_is_touched
             if git_is_staged
@@ -65,7 +65,7 @@ function fish_prompt -d "Simple Fish Prompt"
             end
         end
 
-        __print_color 6597ca "$git_branch_glyph"
+        __print_color blue "$git_branch_glyph"
 
         if __git_upstream_configured
              set -l git_ahead (command git rev-list --left-right --count HEAD...@"{u}" ^ /dev/null | awk '
@@ -74,10 +74,10 @@ function fish_prompt -d "Simple Fish Prompt"
              ')
 
              if test ! -z "$git_ahead"
-                __print_color 5DAE8B " $git_ahead"
+                __print_color green " $git_ahead"
             end
         end
     end
 
-    __print_color FF7676 "\e[K\n❯ "
+    __print_color red "\e[K\n❯ "
 end
